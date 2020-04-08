@@ -5,6 +5,7 @@
 - [x] Prepare and setup environment
 - [x] Deploy Local Polkadot Network
 - [x] Deploy Local Prometheus and Grafana Service
+- [] Refactor Grafana Visualizations
 - [] Aggregate Setup Scripts
 - [] Automate Setup and Deployment in Ansible Script
 - [] Run Final tests
