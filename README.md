@@ -3,8 +3,8 @@
 ## Steps
 - [x] Provision Environment
 - [x] Prepare and setup environment
-- [] Deploy Local Polkadot Network
-- [] Deploy Local Telemetry Server
+- [x] Deploy Local Polkadot Network
+- [x] Deploy Local Prometheus and Grafana Service
 - [] Aggregate Setup Scripts
 - [] Automate Setup and Deployment in Ansible Script
 - [] Run Final tests
