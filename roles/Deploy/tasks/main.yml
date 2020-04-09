@@ -1,0 +1,14 @@
+---
+- name: upload the files directory to the docker host
+  synchronize: 
+    src: files
+    dest: /tmp/
+  register: task_1_sync_result
+
+- name: Create and start services
+  shell: "docker-compose -p {{project_name}} up --build -d"
+  args:
+    chdir: "{{working_dir}}"
+  register: output
+- debug:
+    var: output

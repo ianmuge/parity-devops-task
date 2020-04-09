@@ -27,7 +27,7 @@ services:
   prometheus:
     image: prom/prometheus
     volumes:
-      - "./monitor/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+      - "/tmp/files/monitor/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
     ports:
       - "9090:9090"
     networks:

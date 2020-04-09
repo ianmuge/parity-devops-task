@@ -1,0 +1,22 @@
+---
+- name: EC2 Teardown Scripts
+  hosts: localhost
+  connection: local
+  gather_facts: true
+  vars_prompt:
+    - name: "instance_id"
+      prompt: "Instance id?"
+      private: no
+  vars:
+     ec2_region: "eu-west-2"
+  pre_tasks:
+    - assert:
+        that:
+          - "instance_id is defined"
+  tasks:
+    - name: terminate test instances
+      ec2:
+        region: "{{ec2_region}}"
+        instance_ids: "{{instance_id}}"
+        state: "absent"
+        wait: true

@@ -1,0 +1,11 @@
+---
+- hosts: all
+  name: configuration play
+  user: ec2-user
+  gather_facts: true
+  roles:
+    - name: Setup
+      become: true
+  post_tasks:
+    - name: ping
+      ping:

@@ -1,0 +1,36 @@
+---
+- name: update packages
+  yum:
+    name: "*"
+    state: latest
+- name: install base packages
+  yum:
+    name: "{{item}}"
+    state: present
+  loop:
+    - docker 
+    - git
+- name: install docker-py
+  pip:
+    name: "{{item}}"
+    state: present
+  loop:
+    - docker
+- name: get parsed url
+  shell: "echo https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)"
+  register: parsed_url
+- name: fetch docker compose
+  get_url:
+    url: "{{parsed_url.stdout}}"
+    dest: /usr/local/bin/docker-compose
+    mode: '777'
+- name: "adding existing user {{ansible_user_id}} to group docker"
+  user:
+    name: "{{ansible_user_id}}"
+    groups: "docker"
+    append: yes
+- name: start and enable service
+  service:
+    name: docker
+    enabled: yes
+    state: restarted
